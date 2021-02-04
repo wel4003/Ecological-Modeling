@@ -12,7 +12,7 @@
 
 
 %% Keep PREDATOR death rate constant, change PREY death rate
-
+% this is just an example comment
 
 plot_index = 1
 global a
