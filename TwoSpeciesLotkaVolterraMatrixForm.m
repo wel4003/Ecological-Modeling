@@ -2,13 +2,13 @@
 % In this version we introduce a matricial for to describe the ecological
 % network. Instead of the for parameters we need:
 % mu - a 2x1 vector of the specific growth rates. In this case mu = [a; -c];
-% M - a 2x2 matrix of species interaction. In this case M = [0 -b; d 0];
+% M - a 2x2 matrix of species interaction. In this case M = [-e -b; d -f];
 
 % the ecosystem dynamics is much simpler in matrix format
 % dy = (mu + M*y).*y;
 % This is mathematically equivalent to the previous version
-%     dy = [a * y(1) - b * y(1) * y(2); %prey
-%          -c * y(2) + d * y(1) * y(2)]; %predator
+%     dy = [a * y(1) - b * y(1) * y(2) - e * y(1) * y(1); %prey
+%          -c * y(2) + d * y(1) * y(2) - f * y(2) * y(2)]; %predator
 % It is not only much simpler but it now works for any number of species.
 % For example: a 3 species system needs a 3x1 mu and a 3x3 M and
 % a 456 species system needs a 456x1 mu and a 456x456 M, but they can all
