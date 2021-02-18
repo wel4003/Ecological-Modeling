@@ -92,7 +92,19 @@ function dy = volterra(t,y)
     global d
 
    % Joao's note: added semicolumn to suppress output
-   % during simulation    
+   % during simulation
+   mu1 = a;
+   mu2 = -c;
+   M11 = 0;
+   M21 = -b;
+   M22 = 0;
+   M21 = d;
+   dy(1) = y(1)*(mu1 + M11 * y(1) + M21 * y(2) + M31 *y(3)); 
+   dy(2) = y(2)*(mu2 + M12 * y(1) + M22 * y(2) + M32 *y(3)); 
+   dy(3) = y(3)*(mu3 + M13 * y(1) + M23 * y(3) + M33 *y(3)); 
+   
+   dy = (mu + M*y).*y;
+   
    
     dy = [a * y(1) - b * y(1) * y(2); %prey
          -c * y(2) + d * y(1) * y(2)]; %predator
