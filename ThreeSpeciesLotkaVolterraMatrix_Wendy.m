@@ -30,21 +30,27 @@ a = 1;
 c = 0.5;
 
 
-for b = 0:0.2:1
+for b = 0.2
+%for b = 0:0.2:1
     % build the vector of growth rates mu 
     % and the matrix of species-species interaction M
     mu = [a; b; -c];
     M = [0 -1 1; 0 0 1; 0 0 0];
     % simulate the ecosystem
-    [t,y] = ode23(@volterraMatrixForm, [0 20], [10 10 10]);
+    [t,y] = ode23(@volterraMatrixForm, [0 1], [10 10 10]);
     
     figure(plot_index)
     
-    plot(t,y);
+    plot(t,y, 'LineWidth', 2);
     title('Microbe Populations Over Time');
     xlabel('t');
     ylabel('Population');
     legend('Species A','Species B', 'Species C', 'Location','North');
+    % Species B is growing exponentially quite fast, because it's helped by
+    % A. C is crashing down because it has a negative growth rate and no
+    % other species to help it. In this case it's better to look at the
+    % population numbers in log scale.
+    set(gca, 'YScale', 'log');
     drawnow; %J added this command to make sure the figure shows
     
     % changed the b and d formats from %d to %0.2f
