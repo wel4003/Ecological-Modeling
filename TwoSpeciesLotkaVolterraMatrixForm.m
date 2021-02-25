@@ -31,7 +31,7 @@ c = 1;
 d = 0.02;
 
 for b = 0:0.2:1
-    % buld the vector of growth rates mu 
+    % build the vector of growth rates mu 
     % and the matrix of species-species interaction M
     mu = [a; -c];
     M = [0 -b; d 0];
