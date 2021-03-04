@@ -35,9 +35,10 @@ for b = 0.2
     % build the vector of growth rates mu 
     % and the matrix of species-species interaction M
     mu = [a; b; -c];
-    M = [0 -1 1; 0 0 1; 0 0 0];
+    %M = [0 -1 1; 0 0 1; 0 0 0]; %original
+    M = [-0.5 -1 1; 0 -0.4 1; 0 0 -0.1]; %add in self inhibition
     % simulate the ecosystem
-    [t,y] = ode23(@volterraMatrixForm, [0 1], [10 10 10]);
+    [t,y] = ode23(@volterraMatrixForm, [0 100], [10 10 10]);
     
     figure(plot_index)
     
@@ -50,6 +51,15 @@ for b = 0.2
     % A. C is crashing down because it has a negative growth rate and no
     % other species to help it. In this case it's better to look at the
     % population numbers in log scale.
+    
+    % Wendy: Once the self interaction of Species A is fixed, the greater negative
+    % self interaction Species B has, the sooner it reaches equilibrium. Species C
+    % will always be crashing down to extinction with a negative growth rate along 
+    % with self inhibition. The greater the self inhibition, the faster it
+    % crashes down and goes extinct. Although once it when C's self inhibition is
+    % in between -0.5 and -1, it seems like C briefly makes a come back and
+    % then continues to crash down.
+    
     set(gca, 'YScale', 'log');
     drawnow; %J added this command to make sure the figure shows
     
