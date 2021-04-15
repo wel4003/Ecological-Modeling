@@ -34,11 +34,15 @@ for b = 0.2
 %for b = 0:0.2:1
     % build the vector of growth rates mu 
     % and the matrix of species-species interaction M
-    mu = [a; b; -c];
+    mu = [a; b; c];
     %M = [0 -1 1; 0 0 1; 0 0 0]; %original
-    M = [-0.5 -1 1; 0 -0.4 1; 0 0 -0.1]; %add in self inhibition
+    M = [-0.5 -0.5 1; 0 -0.4 1; 0 0 -0.6]; %add in self inhibition
+    
     % simulate the ecosystem
-    [t,y] = ode23(@volterraMatrixForm, [0 100], [10 10 10]);
+    %[t,y] = ode23(@volterraMatrixForm, [0 100], [0.01 0.01 0.01]);
+    
+    %simulate perturbation that decreases population by 90%
+    [t,y] = ode23(@volterraMatrixForm, [100 200], [0.10827 0.25828 0.08333]);
     
     figure(plot_index)
     
