@@ -23,12 +23,12 @@
 %% Change PREY death rate [b]
 
 plot_index = 1;
-global mu
-global M
+global mu;
+global M;
+global perturbation;
 
 a = 1;
 c = 0.5;
-
 
 b = 0.2
 %for b = 0:0.2:1
@@ -39,33 +39,44 @@ mu = [a; b; c];
 M = [-0.5 -0.5 1; 0 -0.4 1; 0 0 -0.6]; %add in self inhibition
 
 % simulate the ecosystem before perturbation
+perturbation = [0; 0; 0];
 [t,y] = ode23(@volterraMatrixForm, [0 100], [0.01 0.01 0.01]);
 
-%%
 figure(1)
-subplot(3, 1, 1)
+subplot(4, 1, 1)
 plot(t, y)
 title('Ecosystem before pertubation')
 
+%% second time period (pertubation)
 finalYBeforePertubation =  y(end, :);
-%yAfterPertubation =  finalYBeforePertubation * 0.1;
-yAfterPertubation =  finalYBeforePertubation;
 
 % simulate perturbation that decreases population by 90% and affects only
 % Species B regrowth rate.
-[tAfter,yAfter] = ode23(@volterraMatrixForm, [100 200], yAfterPertubation);
+perturbation = [-0.4; -0.4; -0.4];
+[tAfter1,yAfter1] = ode23(@volterraMatrixForm, [100 200], finalYBeforePertubation);
 
 figure(1)
-subplot(3, 1, 2)
-plot(tAfter, yAfter)
+subplot(4, 1, 2)
+plot(tAfter1, yAfter1)
 title('Ecosystem after pertubation')
 
-%
-tCombined = [t; tAfter];
-yCombined = [y; yAfter];
+%% third time period (after perturbation
+% simulate perturbation that decreases population by 90% and affects only
+% Species B regrowth rate.
+perturbation = [0; 0; 0];
+[tAfter2,yAfter2] = ode23(@volterraMatrixForm, [200 300], yAfter1(end, :));
 
 figure(1)
-subplot(3, 1, 3)
+subplot(4, 1, 3)
+plot(tAfter2, yAfter2)
+title('Ecosystem after pertubation')
+
+%%
+tCombined = [t; tAfter1; tAfter2];
+yCombined = [y; yAfter1; yAfter2];
+
+figure(1)
+subplot(4, 1, 4)
 plot(tCombined, yCombined)
 title('Ecosystem before/after pertubation')
 legend({'Species A', 'Species B', 'Species C'})
@@ -103,14 +114,11 @@ function dy = volterraMatrixForm(t,y)
 
 global mu
 global M
-
-if t == 100
-     mu = [1;-0.2;0.5]
-end
+global perturbation;
 
 % the ecosystem dynamics is much simpler in matrix format
 % and it can be expanded to any number of species
-dy = (mu + M*y).*y;
+dy = (mu + M*y + perturbation).*y;
 % This is mathematically equivalent to the two species system
 %     dy = [a * y(1) - b * y(1) * y(2); %prey
 %          -c * y(2) + d * y(1) * y(2)]; %predator
