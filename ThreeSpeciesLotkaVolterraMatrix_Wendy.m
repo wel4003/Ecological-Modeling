@@ -49,7 +49,7 @@ title('Ecosystem before pertubation')
 
 finalYBeforePertubation =  y(end, :);
 %yAfterPertubation =  finalYBeforePertubation * 0.1;
-yAfterPertubation =  finalYBeforePertubation .* [1 0.1 1];
+yAfterPertubation =  finalYBeforePertubation;
 
 % simulate perturbation that decreases population by 90% and affects only
 % Species B regrowth rate.
@@ -105,7 +105,7 @@ global mu
 global M
 
 if t == 100
-    mu = [1;-0.2;0.5]
+     mu = [1;-0.2;0.5]
 end
 
 % the ecosystem dynamics is much simpler in matrix format
