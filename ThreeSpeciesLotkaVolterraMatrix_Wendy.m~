@@ -104,9 +104,7 @@ function dy = volterraMatrixForm(t,y)
 global mu
 global M
 
-if t == 100
-    mu = [1;-0.2;0.5]
-end
+if t >
 
 % the ecosystem dynamics is much simpler in matrix format
 % and it can be expanded to any number of species
@@ -117,5 +115,18 @@ dy = (mu + M*y).*y;
 
 end
 
+%Lotka volterra function after perturbation with new growth rates
+function dy = volterraMatrixFormPer(t,y)
 
+global alpha
+global B
+
+% the ecosystem dynamics is much simpler in matrix format
+% and it can be expanded to any number of species
+dy = (alpha + B*y).*y;
+% This is mathematically equivalent to the two species system
+%     dy = [a * y(1) - b * y(1) * y(2); %prey
+%          -c * y(2) + d * y(1) * y(2)]; %predator
+
+end
 
