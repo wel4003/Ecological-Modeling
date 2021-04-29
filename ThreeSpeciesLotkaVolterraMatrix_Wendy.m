@@ -47,7 +47,7 @@ subplot(4, 1, 1)
 plot(t, y)
 title('Ecosystem before pertubation')
 
-%% second time period (pertubation)
+%% second time period (during pertubation)
 finalYBeforePertubation =  y(end, :);
 
 % simulate perturbation that decreases population by 90% and affects only
@@ -58,9 +58,9 @@ perturbation = [-0.4; -0.4; -0.4];
 figure(1)
 subplot(4, 1, 2)
 plot(tAfter1, yAfter1)
-title('Ecosystem after pertubation')
+title('Ecosystem during pertubation')
 
-%% third time period (after perturbation
+%% third time period (after perturbation)
 % simulate perturbation that decreases population by 90% and affects only
 % Species B regrowth rate.
 perturbation = [0; 0; 0];
