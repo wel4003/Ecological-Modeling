@@ -52,7 +52,7 @@ finalYBeforePertubation =  y(end, :); %population at timepoint 100
 
 % simulate perturbation 
 perturbation = [-0.4; -0.4; -0.4];
-[tAfter1,yAfter1] = ode23(@volterraMatrixForm, [30 60], finalYBeforePertubation);
+[tAfter1,yAfter1] = ode23(@volterraMatrixForm, [30 32], finalYBeforePertubation);
 
 
 figure(1)
@@ -64,7 +64,7 @@ title('Ecosystem during pertubation')
 % a different steady state)
 
 perturbation = [3; 0.4; 0.3];
-[tAfter2,yAfter2] = ode23(@volterraMatrixForm, [60 80], yAfter1(end, :));
+[tAfter2,yAfter2] = ode23(@volterraMatrixForm, [32 80], yAfter1(end, :));
 
 figure(1)
 subplot(4, 1, 3)
@@ -79,6 +79,13 @@ figure(1)
 subplot(4, 1, 4)
 plot(tCombined, yCombined)
 title('Ecosystem before/after pertubation')
+legend({'Species A', 'Species B', 'Species C'})
+
+figure(2)
+plot(tCombined, yCombined)
+axis([25 40 0 7])
+xticklabels({'0','5','10','15'})
+title('Figure 1: Time Series Data')
 legend({'Species A', 'Species B', 'Species C'})
 
 %%
