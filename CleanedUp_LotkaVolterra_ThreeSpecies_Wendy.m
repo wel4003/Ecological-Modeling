@@ -42,7 +42,7 @@ M = [-0.5 -0.5 1; 0 -0.4 1; 0 0 -0.6];
 perturbation = [0; 0; 0];
 [t,y] = ode23(@volterraMatrixForm, [0 30], [0.01 0.01 0.01]);
 
-figure(1)
+figure(1);
 subplot(4, 1, 1)
 plot(t, y)
 title('Ecosystem before pertubation')
@@ -55,7 +55,7 @@ perturbation = [-0.4; -0.4; -0.4];
 [tAfter1,yAfter1] = ode23(@volterraMatrixForm, [30 32], finalYBeforePertubation);
 
 
-figure(1)
+figure(1);
 subplot(4, 1, 2)
 plot(tAfter1, yAfter1)
 title('Ecosystem during pertubation')
@@ -66,7 +66,7 @@ title('Ecosystem during pertubation')
 perturbation = [3; 0.4; 0.3];
 [tAfter2,yAfter2] = ode23(@volterraMatrixForm, [32 80], yAfter1(end, :));
 
-figure(1)
+figure(1);
 subplot(4, 1, 3)
 plot(tAfter2, yAfter2)
 title('Ecosystem after pertubation')
@@ -75,18 +75,21 @@ title('Ecosystem after pertubation')
 tCombined = [t; tAfter1; tAfter2];
 yCombined = [y; yAfter1; yAfter2];
 
-figure(1)
+figure(1);
 subplot(4, 1, 4)
 plot(tCombined, yCombined)
 title('Ecosystem before/after pertubation')
 legend({'Species A', 'Species B', 'Species C'})
 
+%%
 figure(2)
 plot(tCombined, yCombined)
 axis([25 40 0 7])
 xticklabels({'0','5','10','15'})
 title('Figure 1: Time Series Data')
 legend({'Species A', 'Species B', 'Species C'})
+xlabel("Time")
+ylabel("Microbe Abundance")
 
 %%
 drawnow; 
