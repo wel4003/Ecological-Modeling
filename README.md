@@ -1,7 +1,4 @@
 # Ecological-Modeling
-This collection of Matlab scripts simulate ecolosystem dynamics based on the Lotka-Volterra model.<br>
+This repository contains a Matlab script used to simulate ecolosystem dynamics based on the Lotka-Volterra model. This script was used to generate Figure 1 present in our Current Opinion of Microbiology review.<br>
 Files in this repository:<br>
-<b>CleanedUp_LotkaVolterra_ThreeSpecies_Wendy:</b> Cleaned up version of Wendy's implementation of the 3 species Lotka-Volterra predator prey system for Current Ops paper.<br>
-<b>LotkaVolterra.m:</b> Wendy's implementation of the 2 species Lotka-Volterra predator prey system.<br>
-<b>LotkaVolterraJoaosNotes.m:</b> The same, but with a few changes made by Joao and some annotation to explain the changes.<br>
-<b>TwoSpeciesLotkaVolterraMatrixForm.m:</b> The same 2 species system but now in matrix form.<br>
+<b>CleanedUp_LotkaVolterra_ThreeSpecies:</b> Cleaned up and commented version of our implementation of the 3 species Lotka-Volterra predator prey system for Current Ops review. Addition to plotting time series data, we also generated graphs for the species' growth rates, an interaction matrix, and the effects of antibiotic perturbation on the three species. This script can be adapted to include any number of species.<br>
